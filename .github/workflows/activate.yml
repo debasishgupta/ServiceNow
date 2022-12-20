@@ -7,7 +7,7 @@ name: ServiceNow GitHub Actions Build-Deploy-Dev
 #    branches:
 #      - master
 on:
-   workflow-dispatch:
+   workflow_dispatch:
 
 jobs:
   build:
