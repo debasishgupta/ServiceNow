@@ -1,0 +1,70 @@
+#This is the build and deploy for dev instance
+name: ServiceNow GitHub Actions Build-Deploy-Dev
+
+#on:
+#  pull_request:
+#  push:
+#    branches:
+#      - master
+on:
+   workflow-dispatch:
+
+jobs:
+  build:
+    # Purpose of this job is to Apply Remote Changes for the branch triggering 
+    # the pipeline build to the Dev instance, then publish the application to 
+    # app repo using the template versioning format. 
+    name: Publish from Dev
+    runs-on: windows-latest
+    #[self-hosted, windows, x64, snow-dev-1]
+    # Below line can be used to set conditionals for modifying your pipeline as needed.
+    # if: ${{ github.event_name == 'pull_request'}}
+
+    steps:
+      
+      - name: Activate Plugin 
+        id: sncicd-plugin-activate # id of the step
+        uses: ServiceNow/sncicd-plugin-activate@2.0.0 # like username/repo-name
+        with:
+          pluginID: com.servicenow_now_calendar
+        env:
+         nowUsername: ${{ secrets.NOW_USERNAME }}
+         nowPassword: ${{ secrets.NOW_PASSWORD }}
+         nowInstallInstance: ${{ secrets.NOW_INSTALL_INSTANCE }}
+      
+      #- name: ServiceNow CI/CD Apply Changes
+      #  uses: ServiceNow/sncicd-apply-changes@2.0.0
+      
+     
+          
+      #- name: Install Application 
+      #  id: sncicd-install-app # id of the step
+      #  uses: ServiceNow/sncicd-install-app@2.0.0 # like username/repo-name
+      #  with:
+      #       version: 1.0.2 #${{steps.publish_app.outputs.newVersion}}
+      #       baseAppVersion: '1.0.0' # optional
+      #       autoUpgradeBaseApp: true    # optional
+      #  env:
+      #       nowUsername: ${{ secrets.SNOW_USERNAME }}
+      #       nowPassword: ${{ secrets.SNOW_PASSWORD }}
+      #       nowInstallInstance: ${{ secrets.INSTANCE_NAME }}
+    #      appSysID: ${{ secrets.SYS_ID }}
+     #        #appScope: ${{ secrets.SYS_ID }}
+      
+      #- name: ServiceNow CI/CD Apply Changes
+      #  uses: ServiceNow/sncicd-apply-changes@1.2.1
+       # - name: Publish Application 
+        #env:
+        #  nowUsername: ${{ secrets.SNOW_USERNAME }}
+        #  nowPassword: ${{ secrets.SNOW_PASSWORD }}
+        #  nowSourceInstance: ${{ secrets.INSTANCE_NAME }}
+         # appScope: ${{ secrets.SYS_ID }}
+
+      
+          
+    # This is required to pass the version number output from Publish App 
+    # to the input for Install App in the next job! This is because the jobs 
+    # run on different Linux instances, so without this Install App won't know
+    # what to install.
+    #outputs:
+      #publishversion: ${{ steps.publish_app.outputs.newVersion }}
