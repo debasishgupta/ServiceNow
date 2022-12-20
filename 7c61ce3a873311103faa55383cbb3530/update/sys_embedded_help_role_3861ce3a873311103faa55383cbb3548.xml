@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role">
+    <sys_embedded_help_role action="INSERT_OR_UPDATE">
+        <order>1000</order>
+        <role display_value="x_955429_service_0.user" name="x_955429_service_0.user">f861ce3a873311103faa55383cbb3547</role>
+        <sys_class_name>sys_embedded_help_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-12-20 00:18:17</sys_created_on>
+        <sys_id>3861ce3a873311103faa55383cbb3548</sys_id>
+        <sys_name>f861ce3a873311103faa55383cbb3547</sys_name>
+        <sys_package display_value="ServiceNow_Integration" source="x_955429_service_0">7c61ce3a873311103faa55383cbb3530</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ServiceNow_Integration">7c61ce3a873311103faa55383cbb3530</sys_scope>
+        <sys_update_name>sys_embedded_help_role_3861ce3a873311103faa55383cbb3548</sys_update_name>
+    </sys_embedded_help_role>
+</record_update>
